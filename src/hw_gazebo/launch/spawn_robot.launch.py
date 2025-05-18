@@ -9,9 +9,9 @@ from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
 
-    pkg_bme_gazebo_sensors = get_package_share_directory('bme_gazebo_sensors')
+    pkg_hw_gps_nav = get_package_share_directory('hw_gazebo')
 
-    gazebo_models_path, ignore_last_dir = os.path.split(pkg_bme_gazebo_sensors)
+    gazebo_models_path, ignore_last_dir = os.path.split(pkg_hw_gps_nav)
     os.environ["GZ_SIM_RESOURCE_PATH"] += os.pathsep + gazebo_models_path
 
     rviz_launch_arg = DeclareLaunchArgument(
@@ -25,7 +25,7 @@ def generate_launch_description():
     )
 
     world_arg = DeclareLaunchArgument(
-        'world', default_value='empty.sdf',
+        'world', default_value='d_epulet.sdf',
         description='Name of the Gazebo world file to load'
     )
 
@@ -56,14 +56,14 @@ def generate_launch_description():
 
     # Define the path to your URDF or Xacro file
     urdf_file_path = PathJoinSubstitution([
-        pkg_bme_gazebo_sensors,  # Replace with your package name
+        pkg_hw_gps_nav,  # Replace with your package name
         "urdf",
         LaunchConfiguration('model')  # Replace with your URDF or Xacro file
     ])
 
     world_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(pkg_bme_gazebo_sensors, 'launch', 'world.launch.py'),
+            os.path.join(pkg_hw_gps_nav, 'launch', 'world.launch.py'),
         ),
         launch_arguments={
         'world': LaunchConfiguration('world'),
@@ -74,7 +74,7 @@ def generate_launch_description():
     rviz_node = Node(
         package='rviz2',
         executable='rviz2',
-        arguments=['-d', PathJoinSubstitution([pkg_bme_gazebo_sensors, 'rviz', LaunchConfiguration('rviz_config')])],
+        arguments=['-d', PathJoinSubstitution([pkg_hw_gps_nav, 'rviz', LaunchConfiguration('rviz_config')])],
         condition=IfCondition(LaunchConfiguration('rviz')),
         parameters=[
             {'use_sim_time': LaunchConfiguration('use_sim_time')},
@@ -187,7 +187,7 @@ def generate_launch_description():
         name='ekf_filter_node',
         output='screen',
         parameters=[
-            os.path.join(pkg_bme_gazebo_sensors, 'config', 'ekf.yaml'),
+            os.path.join(pkg_hw_gps_nav, 'config', 'ekf.yaml'),
             {'use_sim_time': LaunchConfiguration('use_sim_time')},
              ]
     )
