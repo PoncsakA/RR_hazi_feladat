@@ -17,8 +17,8 @@
     <spherical_coordinates>
       <surface_model>EARTH_WGS84</surface_model>
       <world_frame_orientation>ENU</world_frame_orientation>
-      <latitude_deg>47.479369</latitude_deg>
-      <longitude_deg>19.057840</longitude_deg>
+      <latitude_deg>47.479379000000002</latitude_deg>
+      <longitude_deg>19.057848</longitude_deg>
       <elevation>0</elevation>
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
@@ -61,7 +61,7 @@
         </inertial>
         <enable_wind>false</enable_wind>
       </link>
-      <pose>-20.768100738525391 -25.785299301147461 -9.6409292221069336 0 0 0</pose>
+      <pose>-10.330499649047852 -1.8970059156417847 -2.9767498970031738 0 0 0</pose>
       <static>true</static>
       <self_collide>false</self_collide>
     </model>
