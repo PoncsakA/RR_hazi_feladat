@@ -46,6 +46,11 @@ class GPSWaypointFollower(Node):
                          [47.47896647, 19.05693559],
                          [47.47880162, 19.05682132]]
         
+        # self.waypoints = [[47.478830, 19.058087],
+        #                  [47.478878, 19.058149],
+        #                  [47.479075, 19.058055],
+        #                  [47.478950, 19.057785]]
+
         self.waypoint_index = 0
 
         self.publisher = self.create_publisher(Twist, 'cmd_vel', 10)
