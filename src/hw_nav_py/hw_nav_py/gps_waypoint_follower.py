@@ -41,6 +41,7 @@ class GPSWaypointFollower(Node):
         self.pitch = 0
         self.yaw = 0
 
+        # Hardcoded waypoints
         self.waypoints = [[47.47906033, 19.05739569],
                          [47.479124, 19.057535],
                          [47.47896647, 19.05693559],
@@ -57,10 +58,12 @@ class GPSWaypointFollower(Node):
         self.gps_subscription = self.create_subscription(NavSatFix, '/navsat', self.navsat_callback, 10)
         self.imu_subscription = self.create_subscription(Imu, '/imu', self.imu_callback, 10)
 
+    # Get coords from GPS
     def navsat_callback(self, msg):
         self.latitude = msg.latitude
         self.longitude = msg.longitude
 
+    # Get orientation from IMU
     def imu_callback(self, msg):
         orientation_q = msg.orientation
         orientation_list = [orientation_q.x, orientation_q.y, orientation_q.z, orientation_q.w]
@@ -76,7 +79,7 @@ class GPSWaypointFollower(Node):
         msg.angular.z = 0.0
 
         while rclpy.ok():
-
+            # Get distance and bearing towards next waypoint
             distance, bearing = haversine(self.latitude, self.longitude, self.waypoints[self.waypoint_index][0], self.waypoints[self.waypoint_index][1])
 
             # Calculate the heading error from robot's yaw angle and bearing from the GPS coordinates

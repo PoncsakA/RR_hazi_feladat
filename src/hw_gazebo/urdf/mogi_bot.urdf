@@ -257,7 +257,7 @@
     <!-- <material>Gazebo/Red</material> -->
   </gazebo>
 
-<!-- STEP 8 - IMU -->
+  <!-- STEP 8 - IMU -->
   <joint name="imu_joint" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0" />
     <parent link="base_link"/>
@@ -267,7 +267,7 @@
   <link name="imu_link">
   </link>
 
-    <!-- STEP 9 - GPS -->
+  <!-- STEP 9 - GPS -->
   <joint name="navsat_joint" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0" />
     <parent link="base_link"/>
