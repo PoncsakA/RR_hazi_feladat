@@ -20,7 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'gps_waypoint_follower = bme_gazebo_sensors_py.gps_waypoint_follower:main'
+            'gps_waypoint_follower = hw_nav_py.gps_waypoint_follower:main'
         ],
     },
 )
