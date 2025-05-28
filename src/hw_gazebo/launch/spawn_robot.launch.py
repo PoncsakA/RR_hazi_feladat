@@ -9,9 +9,9 @@ from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
 
-    pkg_hw_gps_nav = get_package_share_directory('hw_gazebo')
+    pkg_hw_gazebo = get_package_share_directory('hw_gazebo')
 
-    gazebo_models_path, ignore_last_dir = os.path.split(pkg_hw_gps_nav)
+    gazebo_models_path, ignore_last_dir = os.path.split(pkg_hw_gazebo)
     os.environ["GZ_SIM_RESOURCE_PATH"] += os.pathsep + gazebo_models_path
 
     rviz_launch_arg = DeclareLaunchArgument(
@@ -56,14 +56,14 @@ def generate_launch_description():
 
     # Define the path to your URDF or Xacro file
     urdf_file_path = PathJoinSubstitution([
-        pkg_hw_gps_nav,  # Replace with your package name
+        pkg_hw_gazebo,  # Replace with your package name
         "urdf",
         LaunchConfiguration('model')  # Replace with your URDF or Xacro file
     ])
 
     world_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(pkg_hw_gps_nav, 'launch', 'world.launch.py'),
+            os.path.join(pkg_hw_gazebo, 'launch', 'world.launch.py'),
         ),
         launch_arguments={
         'world': LaunchConfiguration('world'),
@@ -74,7 +74,7 @@ def generate_launch_description():
     rviz_node = Node(
         package='rviz2',
         executable='rviz2',
-        arguments=['-d', PathJoinSubstitution([pkg_hw_gps_nav, 'rviz', LaunchConfiguration('rviz_config')])],
+        arguments=['-d', PathJoinSubstitution([pkg_hw_gazebo, 'rviz', LaunchConfiguration('rviz_config')])],
         condition=IfCondition(LaunchConfiguration('rviz')),
         parameters=[
             {'use_sim_time': LaunchConfiguration('use_sim_time')},
@@ -105,7 +105,7 @@ def generate_launch_description():
             "/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist",
             "/odom@nav_msgs/msg/Odometry@gz.msgs.Odometry",
             "/joint_states@sensor_msgs/msg/JointState@gz.msgs.Model",
-            #"/tf@tf2_msgs/msg/TFMessage@gz.msgs.Pose_V",
+            "/tf@tf2_msgs/msg/TFMessage@gz.msgs.Pose_V",
             #"/camera/image@sensor_msgs/msg/Image@gz.msgs.Image",
             #"/camera/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo",
             "imu@sensor_msgs/msg/Imu@gz.msgs.IMU",
@@ -116,32 +116,6 @@ def generate_launch_description():
             {'use_sim_time': LaunchConfiguration('use_sim_time')},
         ]
     )
-
-    # # Node to bridge camera image with image_transport and compressed_image_transport
-    # gz_image_bridge_node = Node(
-    #     package="ros_gz_image",
-    #     executable="image_bridge",
-    #     arguments=[
-    #         "/camera/image",
-    #     ],
-    #     output="screen",
-    #     parameters=[
-    #         {'use_sim_time': LaunchConfiguration('use_sim_time'),
-    #          'camera.image.compressed.jpeg_quality': 75},
-    #     ],
-    # )
-
-    #     # Relay node to republish /camera/camera_info to /camera/image/camera_info
-    # relay_camera_info_node = Node(
-    #     package='topic_tools',
-    #     executable='relay',
-    #     name='relay_camera_info',
-    #     output='screen',
-    #     arguments=['camera/camera_info', 'camera/image/camera_info'],
-    #     parameters=[
-    #         {'use_sim_time': LaunchConfiguration('use_sim_time')},
-    #     ]
-    # )
 
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
@@ -170,7 +144,7 @@ def generate_launch_description():
         name='ekf_filter_node',
         output='screen',
         parameters=[
-            os.path.join(pkg_hw_gps_nav, 'config', 'ekf.yaml'),
+            os.path.join(pkg_hw_gazebo, 'config', 'ekf.yaml'),
             {'use_sim_time': LaunchConfiguration('use_sim_time')},
              ]
     )
