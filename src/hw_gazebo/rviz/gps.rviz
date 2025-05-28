@@ -143,28 +143,6 @@ Visualization Manager:
         Reliability Policy: Reliable
         Value: /trajectory
       Value: true
-    - Class: rviz_default_plugins/Camera
-      Enabled: true
-      Far Plane Distance: 100
-      Image Rendering: background and overlay
-      Name: Camera
-      Overlay Alpha: 0.5
-      Topic:
-        Depth: 5
-        Durability Policy: Volatile
-        History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /camera/image/compressed
-      Value: true
-      Visibility:
-        AerialMap: true
-        Grid: true
-        Imu: true
-        LaserScan: true
-        Path: true
-        RobotModel: true
-        Value: true
-      Zoom Factor: 1
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
