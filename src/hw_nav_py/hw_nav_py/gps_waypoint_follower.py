@@ -42,15 +42,12 @@ class GPSWaypointFollower(Node):
         self.yaw = 0
 
         # Hardcoded waypoints
-        self.waypoints = [[47.47906033, 19.05739569],
-                         [47.479124, 19.057535],
-                         [47.47896647, 19.05693559],
-                         [47.47880162, 19.05682132]]
-        
-        # self.waypoints = [[47.478830, 19.058087],
-        #                  [47.478878, 19.058149],
-        #                  [47.479075, 19.058055],
-        #                  [47.478950, 19.057785]]
+        self.waypoints = [
+            [47.47906033, 19.05739569],  # Rámpa teteje
+            [47.47897424, 19.05723627],  # Rámpa alja
+            [47.47896647, 19.05693559],  # Fa kerülése észak felől
+            [47.47885077, 19.05681222]   # BME padok között
+        ]
 
         self.waypoint_index = 0
 
