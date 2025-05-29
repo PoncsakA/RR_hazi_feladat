@@ -35,14 +35,14 @@
         <visual name='visual'>
           <geometry>
             <mesh>
-              <uri>file:///home/akos/RR_hazi_feladat/src/hw_gazebo/meshes/gazebo.dae</uri>
+              <uri>../meshes/gazebo.dae</uri>
             </mesh>
           </geometry>
         </visual>
         <collision name='collision'>
           <geometry>
             <mesh>
-              <uri>file:///home/akos/RR_hazi_feladat/src/hw_gazebo/meshes/gazebo.dae</uri>
+              <uri>../meshes/gazebo.dae</uri>
             </mesh>
           </geometry>
         </collision>
