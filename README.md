@@ -6,7 +6,7 @@ A repository for the GPS waypoint based navigation project.
 1. [Administrative information](#administrative-information)
 1. [Demonstration video](#demonstration-video)
 1. [Project requirements](#project-requirements)
-1. [Required packages](#required-packages)
+1. [Packages](#packages)
 1. [Installation](#installation)
 1. [Launch command](#launch-command)
 1. [Further development ideas](#further-development-ideas)
@@ -21,8 +21,7 @@ Members:
 - Veres Kristóf / N7CARQ
 
 ## Demonstration video
-
-IDE MÉG A YOUTUBEOT BE KELL ÁGYAZNI
+[![Demonstration video](https://img.youtube.com/vi/nkewDz56hDo/0.jpg)](https://www.youtube.com/watch?v=nkewDz56hDo)
 
 ## Project requirements
 
